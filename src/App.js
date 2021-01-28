@@ -1,9 +1,12 @@
+import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Home from './views/Home'
 function App () {
   return (
-    <div className='App'>
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' component={Home} exact />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
