@@ -1,0 +1,33 @@
+.ant-card-meta-description {
+  color: #c3aa8a;
+}
+.ant-card-meta-title {
+  color: #fff;
+}
+.ant-card.ant-card-bordered.ant-card-hoverable {
+  background: #222126;
+  border-color: #222126;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  width: 240px;
+}
+.more-btn {
+  margin-top: 20px;
+  background: #d22747;
+  color: #fff;
+  width: 100%;
+  font-size: 16px;
+  border-color: #d22747;
+  border-radius: 4px;
+}
+.meta-detail {
+  margin-top: 10px;
+}
+.meta-co {
+  display: flex;
+}
+.meta-item-right {
+    color: #fff;
+}
+.meta-item-left {
+    color: #c3aa8a;
+}
