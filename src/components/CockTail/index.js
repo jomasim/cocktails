@@ -2,25 +2,26 @@ import React from 'react'
 import { Card, Button } from 'antd'
 import './cocktail.css'
 
-const CockTail = () => (
+const CockTail = ({ data }) => (
   <Card
     hoverable
-    style={{ width: '300px', margin:'10px' }}
+    style={{ width: '300px', margin: '10px' }}
     cover={
       <img
-        alt='example'
-        src='https://www.thecocktaildb.com/images/media/drink/nkwr4c1606770558.jpg'
+        alt='alt'
+        src={data.strDrinkThumb}
       />
     }
   >
     <div className='meta-detail'>
+      <p style={{ color: '#fff', fontSize: '20px' }}>{data.strDrink}</p>
       <div className='meta-co'>
         <span className='meta-item-left'>Category:</span>
-        <span className='meta-item-right'>Other/Unknown</span>
+        <span className='meta-item-right'>{data.strCategory}</span>
       </div>
       <div className='meta-co'>
         <span className='meta-item-left'>Glass:</span>
-        <span className='meta-item-right'>Star glass</span>
+        <span className='meta-item-right'>{data.strGlass}</span>
       </div>
     </div>
     <Button className='more-btn'>More</Button>

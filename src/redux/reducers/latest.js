@@ -6,20 +6,21 @@ import {
   
   const INITIAL_STATE = {
     loading: false,
-    data: []
+    data: [],
+    error: {}
   }
   
   const latest = (state = INITIAL_STATE, action) => {
     const { payload, type } = action
     switch (type) {
       case FETCH_LATEST:
-        return { ...state, loading: true, data: payload }
+        return { ...state, loading: true }
       case FETCH_LATEST_SUCCESS:
-          return { ...state, loading: true, data: payload }
+          return { ...state, loading: false, data: payload }
       case FETCH_LATEST_ERROR:
-          return { ...state, loading: true, data: payload }
+          return { ...state, loading: false, error: payload }
       default:
-        return INITIAL_STATE
+        return state
     }
   }
   export default latest

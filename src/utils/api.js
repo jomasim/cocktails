@@ -1,6 +1,6 @@
 import server from './server'
 const api = {
-  getCockTail: async id => server.get(`/lookup.php/${id}`, payload),
+  getCockTail: async id => server.get(`/lookup.php/${id}`),
   getLatest: async (payload = {}) => server.get('/latest.php', payload),
   getPopular: async (payload = {}) => server.get('/popular.php', payload)
 }
