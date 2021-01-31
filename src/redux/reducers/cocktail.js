@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   loading: false,
-  data: []
+  data: {}
 }
 
 const cocktail = (state = INITIAL_STATE, action) => {

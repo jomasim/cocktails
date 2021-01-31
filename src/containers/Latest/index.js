@@ -1,15 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import CockTail from '../../components/CockTail'
-import { fetchLatest } from '../../redux/actions'
 
-const Latest = ({data, loading}) => {
-  // const dispatch = useDispatch()
-  // const { data, loading } = useSelector(state => state.latest)
-  // useEffect(() => {
-  //   dispatch(fetchLatest())
-  // }, [dispatch])
-  console.log(data, "Latest Data")
+const Latest = ({ data, loading, showCockTail }) => {
   return (
     <div style={{ marginTop: '50px' }}>
       <div style={{ textAlign: 'center' }}>
@@ -27,7 +20,11 @@ const Latest = ({data, loading}) => {
         }}
       >
         {data.map(item => (
-          <CockTail key={item.idDrink} data={item} />
+          <CockTail
+            key={item.idDrink}
+            data={item}
+            showCockTail={showCockTail}
+          />
         ))}
       </div>
     </div>

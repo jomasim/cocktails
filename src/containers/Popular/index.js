@@ -1,6 +1,6 @@
 import CockTail from '../../components/CockTail'
 import './popular.css'
-const Popular = ({data, loading}) => {
+const Popular = ({ data, loading, showCockTail }) => {
   return (
     <div style={{ marginTop: '50px' }}>
       <div style={{ textAlign: 'center' }}>
@@ -15,8 +15,13 @@ const Popular = ({data, loading}) => {
           justifyContent: 'center'
         }}
       >
-        {
-          data.map(item => <CockTail key={item.idDrink} data={item} />)}
+        {data.map(item => (
+          <CockTail
+            key={item.idDrink}
+            data={item}
+            showCockTail={showCockTail}
+          />
+        ))}
       </div>
     </div>
   )

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchLatest } from '../../redux/actions'
 import { Layout, Menu, Row, Col, Image, Button } from 'antd'
 import bannerImg from '../../assets/wine.png'
 import Banner from '../../components/Banner'
 import Popular from '../../containers/Popular'
 import Latest from '../../containers/Latest'
-import { fetchPopular } from '../../redux/actions'
+import { fetchPopular, fetchRandom, fetchLatest } from '../../redux/actions'
+import { useHistory } from 'react-router-dom'
 
 const { Header, Content, Footer } = Layout
 
@@ -21,18 +21,35 @@ const btnStyle = {
 
 const Home = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const { data: latestData, loading: loadingLatest } = useSelector(
     state => state.latest
   )
+
   const { data: popularData, loading: loadingPopular } = useSelector(
     state => state.popular
   )
+  const { data: random } = useSelector(state => state.random)
+
   useEffect(() => {
     dispatch(fetchPopular())
     dispatch(fetchLatest())
   }, [])
 
+  useEffect(() => {
+    if (random.idDrink) {
+      showCockTail(random.idDrink)
+    }
+  }, [random])
+
+  const showCockTail = id => {
+    history.push(`/cocktails/${id}`)
+  }
+
+  const getRandomDrink = () => {
+    dispatch(fetchRandom())
+  }
 
   return (
     <Layout className='layout'>
@@ -56,14 +73,24 @@ const Home = () => {
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.
             </p>
-            <Button style={btnStyle}>Get Random Drink</Button>
+            <Button style={btnStyle} onClick={() => getRandomDrink()}>
+              Get Random Drink
+            </Button>
           </Col>
           <Col span={12}>
             <Image width={450} src={bannerImg} />
           </Col>
         </Row>
-        <Popular data={popularData} loading={loadingPopular} />
-        <Latest data={latestData} loading={loadingLatest} />
+        <Popular
+          data={popularData}
+          loading={loadingPopular}
+          showCockTail={showCockTail}
+        />
+        <Latest
+          data={latestData}
+          loading={loadingLatest}
+          showCockTail={showCockTail}
+        />
       </Content>
       <Footer style={{ textAlign: 'center' }}>Cocktails here 2021</Footer>
     </Layout>

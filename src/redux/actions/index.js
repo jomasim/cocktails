@@ -8,7 +8,6 @@ export const fetchPopular = payload => dispatch => {
   api
     .getPopular(payload)
     .then(res => {
-      console.log(res.data, 'popular')
       dispatch({
         type: types.FETCH_POPULAR_SUCCESS,
         payload: res.data.drinks.slice(0, 5)
@@ -29,7 +28,6 @@ export const fetchLatest = payload => dispatch => {
   api
     .getLatest(payload)
     .then(res => {
-      console.log(res.data, 'latest')
       dispatch({
         type: types.FETCH_LATEST_SUCCESS,
         payload: res.data.drinks.slice(0, 5)
@@ -42,14 +40,34 @@ export const fetchLatest = payload => dispatch => {
 
 // FETCH COCKTAIL
 
-export const fetchCockTail = payload => dispatch => {
-  dispatch({ type: types.FETCH_COCKTAIL, payload })
+export const fetchCockTail = id => dispatch => {
+  dispatch({ type: types.FETCH_COCKTAIL, id })
   api
-    .getCockTail(payload)
+    .getCockTail(id)
     .then(res => {
-      dispatch({ type: types.FETCH_COCKTAIL_SUCCESS, payload: res.data })
+      dispatch({
+        type: types.FETCH_COCKTAIL_SUCCESS,
+        payload: res.data.drinks[0]
+      })
     })
     .catch(err => {
       dispatch({ type: types.FETCH_COCKTAIL_ERROR, payload: err.response.data })
+    })
+}
+
+// FETCH RANDOM
+
+export const fetchRandom = () => dispatch => {
+  dispatch({ type: types.FETCH_RANDOM })
+  api
+    .getRandom()
+    .then(res => {
+      dispatch({
+        type: types.FETCH_RANDOM_SUCCESS,
+        payload: res.data.drinks[0]
+      })
+    })
+    .catch(err => {
+      dispatch({ type: types.FETCH_RANDOM_ERROR, payload: err.response.data })
     })
 }
