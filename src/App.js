@@ -6,7 +6,7 @@ function App () {
     <BrowserRouter>
       <Switch>
         <Route path='/' component={Home} exact />
-        <Route path='/cocktails/:id' component={CockTailPreview} />
+        <Route path='/cocktails/:id' component={CockTailPreview} exact />
       </Switch>
     </BrowserRouter>
   )
