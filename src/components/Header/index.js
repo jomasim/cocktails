@@ -9,7 +9,7 @@ const appHeader = () => (
         <Link to='/'>Home</Link>
       </Menu.Item>
       <Menu.Item key='2'>
-        <Link to='/'>Custom cocktails</Link>
+        <Link to='/custom'>Custom cocktails</Link>
       </Menu.Item>
     </Menu>
   </Header>
