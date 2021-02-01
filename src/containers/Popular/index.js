@@ -2,7 +2,9 @@ import CockTail from '../../components/CockTail'
 import './popular.css'
 const Popular = ({ data, showCockTail }) => {
   return (
-    <div style={{ marginTop: '50px' }}>
+    <div
+      style={{ marginTop: '50px', display: 'flex', flexDirection: 'column' }}
+    >
       <div style={{ textAlign: 'center' }}>
         <p className='popular-tit'>Popular</p>
       </div>
@@ -10,9 +12,9 @@ const Popular = ({ data, showCockTail }) => {
         className='co-co'
         style={{
           display: 'flex',
-          marginTop: '60px',
           flexWrap: 'wrap',
-          justifyContent: 'center'
+          justifyContent: 'left',
+          padding: '50px'
         }}
       >
         {data.map(item => (

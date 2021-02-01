@@ -2,7 +2,13 @@ import CockTail from '../../components/CockTail'
 
 const Latest = ({ data, showCockTail }) => {
   return (
-    <div style={{ marginTop: '50px' }}>
+    <div
+      style={{
+        marginTop: '50px',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
       <div style={{ textAlign: 'center' }}>
         <p style={{ color: '#fff', fontWeight: '400', fontSize: '31px' }}>
           Latest
@@ -12,9 +18,9 @@ const Latest = ({ data, showCockTail }) => {
         className='co-co'
         style={{
           display: 'flex',
-          marginTop: '60px',
           flexWrap: 'wrap',
-          justifyContent: 'center'
+          justifyContent: 'left',
+          padding: '50px'
         }}
       >
         {data.map(item => (
