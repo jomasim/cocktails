@@ -11,7 +11,7 @@ const { Content, Footer } = Layout
 const CockTailPreview = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { data, loading } = useSelector(state => state.cocktail)
+  const { data } = useSelector(state => state.cocktail)
   const [ingredients, setIngredients] = useState([])
 
   const mapIngredients = () => {

@@ -1,13 +1,13 @@
 import firebase from 'firebase'
 const firebaseConfig = {
-    apiKey: 'AIzaSyBhiFoEQyMZppOZh5Tp08-BsHbc3em1T6k',
-    authDomain: 'cocktails-df141.firebaseapp.com',
-    databaseURL: 'https://cocktails-df141-default-rtdb.firebaseio.com',
-    projectId: 'cocktails-df141',
-    storageBucket: 'cocktails-df141.appspot.com',
-    messagingSenderId: '462488278790',
-    appId: '1:462488278790:web:ec953f8f481959f1f3b087',
-    measurementId: 'G-040RSZHH77'
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+    measurementId: process.env.REACT_APP_measurementId,
   }
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
