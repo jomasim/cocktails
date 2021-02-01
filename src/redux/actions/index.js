@@ -1,4 +1,5 @@
 import api from '../../utils/api'
+import { db, storage } from '../../utils/firebase'
 import * as types from '../types'
 
 // FETCH POPULAR
@@ -69,5 +70,38 @@ export const fetchRandom = () => dispatch => {
     })
     .catch(err => {
       dispatch({ type: types.FETCH_RANDOM_ERROR, payload: err.response.data })
+    })
+}
+
+// UPLOAD IMAGE
+export const uploadImage = payload => dispatch => {
+  dispatch({ type: types.UPLOAD_IMAGE, payload })
+  storage
+    .ref('images/' + payload.name)
+    .put(payload)
+    .then(snapshot => {
+      return snapshot.ref.getDownloadURL()
+    })
+    .then(url => {
+      dispatch({
+        type: types.UPLOAD_IMAGE_SUCCESS,
+        payload: { url, status: 'done', name: payload.name }
+      })
+    })
+    .catch(error => {
+      dispatch({ type: types.UPLOAD_IMAGE_ERROR, payload: error })
+    })
+}
+
+// POST CUSTOM COCKTAILS
+export const postCockTail = payload => dispatch => {
+  dispatch({ type: types.POST_COCKTAIL, payload })
+  db.collection('cocktails')
+    .add(payload)
+    .then(doc => {
+      dispatch({ type: types.POST_COCKTAIL_SUCCESS, payload: doc })
+    })
+    .catch(err => {
+      dispatch({ type: types.POST_COCKTAIL_ERROR, payload: err })
     })
 }

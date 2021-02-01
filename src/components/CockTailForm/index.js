@@ -1,21 +1,10 @@
 import { Form, Input, Button, Select, Checkbox, Upload } from 'antd'
 import { TagInput } from 'reactjs-tag-input'
 import { UploadOutlined } from '@ant-design/icons'
-import firebase from 'firebase'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState, useRef } from 'react'
 import './form.css'
-
-var firebaseConfig = {
-  apiKey: 'AIzaSyBhiFoEQyMZppOZh5Tp08-BsHbc3em1T6k',
-  authDomain: 'cocktails-df141.firebaseapp.com',
-  databaseURL: 'https://cocktails-df141-default-rtdb.firebaseio.com',
-  projectId: 'cocktails-df141',
-  storageBucket: 'cocktails-df141.appspot.com',
-  messagingSenderId: '462488278790',
-  appId: '1:462488278790:web:ec953f8f481959f1f3b087',
-  measurementId: 'G-040RSZHH77'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+import { postCockTail, uploadImage } from '../../redux/actions'
 
 const layout = {
   labelCol: {
@@ -36,20 +25,44 @@ const { Option } = Select
 
 const CockTailForm = () => {
   const [form] = Form.useForm()
+  const formRef = useRef()
+  const [fileList, setFileList] = useState([])
+  const dispatch = useDispatch()
 
-  const onFinish = values => {
-    console.log('Success:', values)
+  const { data: imageData, loading: loadingImage } = useSelector(
+    state => state.uploadImage
+  )
 
-    firebase
-      .database()
-      .ref('cocktails/')
-      .set({ ...values })
+  const { loading: postCockTailStatus } = useSelector(
+    state => state.postCockTail
+  )
+
+  useEffect(() => {
+    if (imageData) {
+      setFileList([imageData])
+      form.setFieldsValue({ thumbnail: imageData.url })
+    }
+  }, [imageData, form])
+
+  const handleImageUpload = async () => {
+    const { file, fileList } = form.getFieldValue('thumbnail')
+    if (fileList.length) {
+      const image = file.originFileObj
+      dispatch(uploadImage(image))
+    }
   }
+
   const onTagsChanged = ingredients => {
     form.setFieldsValue({ ingredients })
   }
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo)
+
+  const onFinish = values => {
+    dispatch(postCockTail(values))
+    form.resetFields()
+  }
+
+  const onSubmit = () => {
+    formRef.current.submit()
   }
 
   return (
@@ -63,7 +76,7 @@ const CockTailForm = () => {
         name='basic'
         form={form}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
+        ref={formRef}
       >
         <Form.Item name='name' label='Name' rules={[{ required: true }]}>
           <Input />
@@ -71,6 +84,8 @@ const CockTailForm = () => {
         <Form.Item name='category' label='Category'>
           <Select>
             <Option value='Ordinary drink'>Ordinary drink</Option>
+            <Option value='Shot'>Shot</Option>
+            <Option value='Punch / Party Drink'>Punch / Party Drink</Option>
           </Select>
         </Form.Item>
         <Form.Item name='glass' label='Glass' rules={[{ required: true }]}>
@@ -82,24 +97,27 @@ const CockTailForm = () => {
         <Form.Item name='instructions' label='Instructions'>
           <Input.TextArea />
         </Form.Item>
-        {/* <Form.Item name='thumbnail' label='Image'>
-          <Upload
-            action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-            listType='picture'
-            defaultFileList={[]}
-          >
-            <Button icon={<UploadOutlined />}>Upload</Button>
+        <Form.Item name='thumbnail' label='Image'>
+          <Upload fileList={fileList} customRequest={handleImageUpload}>
+            <Button icon={<UploadOutlined />} loading={loadingImage}>
+              Upload
+            </Button>
           </Upload>
-        </Form.Item> */}
+        </Form.Item>
         <Form.Item name='ingredients' label='Ingredients'>
-          <TagInput tags={[]} onTagsChanged={onTagsChanged} />
+          <TagInput
+            placeholder='Enter ingredients'
+            tags={[]}
+            onTagsChanged={onTagsChanged}
+          />
         </Form.Item>
 
         <Form.Item {...tailLayout}>
           <Button
             type='primary'
-            htmlType='submit'
             style={{ background: ' #d22747', borderColor: ' #d22747' }}
+            loading={postCockTailStatus}
+            onClick={() => onSubmit()}
           >
             Submit
           </Button>
