@@ -2,35 +2,28 @@ import { Layout, Input } from 'antd'
 import Header from '../../components/Header'
 import CockTailForm from '../../components/CockTailForm'
 import CockTail from '../../components/CockTail'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCustomCockTail } from '../../redux/actions'
 const { Content, Footer } = Layout
 const { Search } = Input
 const CustomCockTails = () => {
   const dispatch = useDispatch()
-  const [drinks, setDrinks] = useState([])
-  const { data: customCocktails } = useSelector(state => state.fetchCustom)
+
+  const { data: customCocktails, loading } = useSelector(
+    state => state.fetchCustom
+  )
 
   useEffect(() => {
-    dispatch(fetchCustomCockTail())
+    dispatch(fetchCustomCockTail({}))
   }, [dispatch])
-
-  useEffect(() => {
-    if (customCocktails.length) {
-      setDrinks(customCocktails)
-    }
-  }, [customCocktails])
 
   const showCockTail = () => {
     // todo
   }
 
-  const onSearch = e => {
-    console.log('values', e.target.value)
-    const { value } = e.target
-    const filtered = drinks.filter(drink => drink.strDrink.includes(value))
-    setDrinks(filtered)
+  const onSearch = strDrink => {
+    dispatch(fetchCustomCockTail({ strDrink }))
   }
   return (
     <Layout className='layout'>
@@ -43,12 +36,13 @@ const CustomCockTails = () => {
           allowClear
           enterButton
           size='large'
-          onChange={e => onSearch(e)}
+          onSearch={onSearch}
           style={{ width: '400px', marginLeft: '20px' }}
+          loading={loading}
         />
         <div style={{ display: 'flex' }}>
           <div style={{ width: '60vw', display: 'flex' }}>
-            {drinks.map((data, index) => (
+            {customCocktails.map((data, index) => (
               <CockTail key={index} data={data} showCockTail={showCockTail} />
             ))}
           </div>

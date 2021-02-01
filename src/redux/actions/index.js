@@ -100,7 +100,7 @@ export const postCockTail = payload => dispatch => {
     .add(payload)
     .then(doc => {
       dispatch({ type: types.POST_COCKTAIL_SUCCESS, payload: doc })
-      dispatch(fetchCustomCockTail())
+      dispatch(fetchCustomCockTail({}))
     })
     .catch(err => {
       dispatch({ type: types.POST_COCKTAIL_ERROR, payload: err })
@@ -108,10 +108,14 @@ export const postCockTail = payload => dispatch => {
 }
 
 // FETCH CUSTOM COCKTAILS
-export const fetchCustomCockTail = () => dispatch => {
+export const fetchCustomCockTail = (payload = {}) => dispatch => {
+  const { strDrink } = payload
   const cockTails = []
   dispatch({ type: types.FETCH_CUSTOM })
-  db.collection('cocktails')
+  const collection = strDrink
+    ? db.collection('cocktails').where('strDrink', '==', strDrink)
+    : db.collection('cocktails')
+  collection
     .get()
     .then(querySnapshot => {
       querySnapshot.forEach(doc => {

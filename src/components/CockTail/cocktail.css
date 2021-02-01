@@ -26,8 +26,12 @@
   display: flex;
 }
 .meta-item-right {
-    color: #fff;
+  color: #fff;
 }
 .meta-item-left {
-    color: #c3aa8a;
+  color: #c3aa8a;
+}
+.ant-card-cover img {
+  object-fit: cover;
+  height: 300px;
 }
