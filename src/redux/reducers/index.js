@@ -5,6 +5,7 @@ import cocktail from './cocktail'
 import random from './random'
 import postCockTail from './postcocktail'
 import uploadImage from './uploadimage'
+import fetchCustom from './fetchcustom'
 
 const rootReducer = combineReducers({
   popular,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   cocktail,
   random,
   postCockTail,
-  uploadImage
+  uploadImage,
+  fetchCustom
 })
 
 export default rootReducer

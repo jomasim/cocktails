@@ -4,3 +4,11 @@ label {
 span.sc-bwzfXH.cMWoBu {
     background: #b7a082;
 }
+.sc-bdVaJa.cNrjqJ {
+    border-radius: 0;
+    left: 125px;
+    min-width: 200px;
+}
+form#basic {
+    width: 30vw;
+}

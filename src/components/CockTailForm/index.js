@@ -11,7 +11,7 @@ const layout = {
     span: 8
   },
   wrapperCol: {
-    span: 8
+    span: 16
   }
 }
 const tailLayout = {
@@ -40,12 +40,12 @@ const CockTailForm = () => {
   useEffect(() => {
     if (imageData) {
       setFileList([imageData])
-      form.setFieldsValue({ thumbnail: imageData.url })
+      form.setFieldsValue({ strDrinkThumb: imageData.url })
     }
   }, [imageData, form])
 
   const handleImageUpload = async () => {
-    const { file, fileList } = form.getFieldValue('thumbnail')
+    const { file, fileList } = form.getFieldValue('strDrinkThumb')
     if (fileList.length) {
       const image = file.originFileObj
       dispatch(uploadImage(image))
@@ -78,26 +78,26 @@ const CockTailForm = () => {
         onFinish={onFinish}
         ref={formRef}
       >
-        <Form.Item name='name' label='Name' rules={[{ required: true }]}>
+        <Form.Item name='strDrink' label='Name' rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-        <Form.Item name='category' label='Category'>
+        <Form.Item name='strCategory' label='Category'>
           <Select>
             <Option value='Ordinary drink'>Ordinary drink</Option>
             <Option value='Shot'>Shot</Option>
             <Option value='Punch / Party Drink'>Punch / Party Drink</Option>
           </Select>
         </Form.Item>
-        <Form.Item name='glass' label='Glass' rules={[{ required: true }]}>
+        <Form.Item name='strGlass' label='Glass' rules={[{ required: true }]}>
           <Input />
         </Form.Item>
         <Form.Item name='alcoholic' label='Alcoholic' valuePropName='checked'>
           <Checkbox />
         </Form.Item>
-        <Form.Item name='instructions' label='Instructions'>
+        <Form.Item name='strInstructions' label='Instructions'>
           <Input.TextArea />
         </Form.Item>
-        <Form.Item name='thumbnail' label='Image'>
+        <Form.Item name='strDrinkThumb' label='Image'>
           <Upload fileList={fileList} customRequest={handleImageUpload}>
             <Button icon={<UploadOutlined />} loading={loadingImage}>
               Upload

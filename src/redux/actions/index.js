@@ -100,8 +100,26 @@ export const postCockTail = payload => dispatch => {
     .add(payload)
     .then(doc => {
       dispatch({ type: types.POST_COCKTAIL_SUCCESS, payload: doc })
+      dispatch(fetchCustomCockTail())
     })
     .catch(err => {
       dispatch({ type: types.POST_COCKTAIL_ERROR, payload: err })
+    })
+}
+
+// FETCH CUSTOM COCKTAILS
+export const fetchCustomCockTail = () => dispatch => {
+  const cockTails = []
+  dispatch({ type: types.FETCH_CUSTOM })
+  db.collection('cocktails')
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        cockTails.push(doc.data())
+      })
+      dispatch({ type: types.FETCH_CUSTOM_SUCCESS, payload: cockTails })
+    })
+    .catch(err => {
+      dispatch({ type: types.FETCH_CUSTOM_ERROR, payload: err })
     })
 }
