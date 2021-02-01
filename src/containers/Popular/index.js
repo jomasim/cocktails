@@ -1,6 +1,6 @@
 import CockTail from '../../components/CockTail'
 import './popular.css'
-const Popular = ({ data, loading, showCockTail }) => {
+const Popular = ({ data, showCockTail }) => {
   return (
     <div style={{ marginTop: '50px' }}>
       <div style={{ textAlign: 'center' }}>

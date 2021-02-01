@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
 import CockTail from '../../components/CockTail'
 
-const Latest = ({ data, loading, showCockTail }) => {
+const Latest = ({ data, showCockTail }) => {
   return (
     <div style={{ marginTop: '50px' }}>
       <div style={{ textAlign: 'center' }}>

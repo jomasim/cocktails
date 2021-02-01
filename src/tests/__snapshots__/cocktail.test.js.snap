@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Card
+  cover={
+    <img
+      alt="alt"
+    />
+  }
+  hoverable={true}
+  style={
+    Object {
+      "margin": "10px",
+      "width": "300px",
+    }
+  }
+>
+  <div
+    className="meta-detail"
+  >
+    <p
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": "20px",
+        }
+      }
+    >
+      White Wine Sangria
+    </p>
+    <div
+      className="meta-co"
+    >
+      <span
+        className="meta-item-left"
+      >
+        Category:
+      </span>
+      <span
+        className="meta-item-right"
+      >
+        Punch / Party Drink
+      </span>
+    </div>
+    <div
+      className="meta-co"
+    >
+      <span
+        className="meta-item-left"
+      >
+        Glass:
+      </span>
+      <span
+        className="meta-item-right"
+      >
+        Pitcher
+      </span>
+    </div>
+  </div>
+  <Button
+    className="more-btn"
+    onClick={[Function]}
+  >
+    More
+  </Button>
+</Card>
+`;

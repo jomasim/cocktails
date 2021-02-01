@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "50px",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <p
+      className="popular-tit"
+    >
+      Popular
+    </p>
+  </div>
+  <div
+    className="co-co"
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+        "justifyContent": "center",
+        "marginTop": "60px",
+      }
+    }
+  >
+    <CockTail
+      data={
+        Object {
+          "idDrink": "178326",
+          "strCategory": "Punch / Party Drink",
+          "strDrink": "White Wine Sangria",
+          "strGlass": "Pitcher",
+        }
+      }
+      key="178326"
+      showCockTail={[MockFunction]}
+    />
+    <CockTail
+      data={
+        Object {
+          "idDrink": "178326",
+          "strCategory": "Punch / Party Drink",
+          "strDrink": "White Wine Sangria",
+          "strGlass": "Pitcher",
+        }
+      }
+      key="178326"
+      showCockTail={[MockFunction]}
+    />
+  </div>
+</div>
+`;
