@@ -1,0 +1,9 @@
+.ant-menu-item-active {
+  background: #d22747 !important;
+}
+.ant-menu-horizontal {
+  background: #16171b !important;
+}
+.ant-menu-item-selected {
+  background-color: #d22747 !important;
+}

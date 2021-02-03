@@ -1,5 +1,7 @@
 import { Layout, Menu } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
+import './header.css'
+
 const { Header } = Layout
 const AppHeader = () => {
   const location = useLocation()

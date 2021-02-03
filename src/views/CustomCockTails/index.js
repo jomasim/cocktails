@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import CockTailForm from '../../components/CockTailForm'
 import CockTail from '../../components/CockTail'
 import { useEffect } from 'react'
+import './customcock.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCustomCockTail } from '../../redux/actions'
 const { Content, Footer } = Layout
